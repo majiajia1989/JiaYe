@@ -1,0 +1,31 @@
+.icons {
+  padding-left: 0;
+  padding-bottom: 1px;
+  margin-bottom: 20px;
+  list-style: none;
+  overflow: hidden;
+}
+.icons li {
+  float: left;
+  width: 115px;
+  height: 115px;
+  padding: 10px;
+  margin: 0 -1px -1px 0;
+  font-size: 13px;
+  line-height: 1.4;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+.icons [class^="icon-"],.icons .fa,.icons .glyphicon {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-size: 24px;
+} 
+.icons .icon_class {
+  display: block;
+  text-align: center;
+  word-wrap: break-word; /* Help out IE10+ with class names */
+}
+.icons li:hover {
+  background-color: rgba(86,61,124,.1);
+}

@@ -1,0 +1,44 @@
+.header .navbar-toggle {
+	display:inline-block;
+	z-index:inherit;
+	position:absolute;
+	left:190px;
+}
+
+.header .sidebar-toggler {
+  margin: 8px 6px 4px 6px;
+  padding: 0; 
+  padding-top:2px;
+  padding-bottom: 6px; 
+  background-image: none;
+  filter:none;
+  box-shadow: none;
+  color: #fff;
+  border: 0;
+  z-index:inherit;
+  position:absolute;
+  left:190px;
+}
+
+@media (min-width: 992px) { 
+  .page-content { 
+        margin-left: 225px; 
+        margin-top: 0px;
+        min-height: 760px; 
+        padding: 3px;
+    }
+}
+
+.workspace {
+  height:100%;
+}
+
+.workspace iframe {
+  height: 100%;
+  width:99.99%;
+  border: 0;
+  padding: 0px;
+  margin: 0px;
+  background: url('../../img/bg/loading.gif') center no-repeat;
+  overflow: hidden;
+}

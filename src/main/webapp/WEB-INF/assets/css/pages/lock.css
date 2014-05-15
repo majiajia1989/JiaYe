@@ -1,0 +1,74 @@
+
+.lock {
+  background-color: #666 !important;
+}
+
+.lock .logo {
+  margin: 0 auto;   
+  margin-top:10px;
+  padding: 15px;
+  text-align: center;
+}  
+
+
+.lock .content {
+  background: url(../../img/bg-white-lock.png) repeat;
+  width: 360px;
+  margin: 0 auto; 
+  margin-bottom: 0px;
+  padding: 30px;  
+  padding-top: 10px;  
+  padding-bottom: 15px;  
+}
+
+.lock .content h3 {
+  color: #eee;
+}
+.lock .content h4  {
+  color: #eee;
+}
+
+.lock .content .lock-form{
+    padding: 0px;
+    margin: 0px;
+}
+
+.lock .content p,
+.lock .content label {
+  color: #fff;
+}
+
+.lock .content .form-control {
+  background-color: #fff;
+}
+
+
+
+.lock .content .form-title {
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+
+.lock .content .form-actions {
+  background-color: transparent;
+  clear: both;
+  border: 0px;
+  padding: 0px 30px 10px 30px;
+  margin-left: -30px;
+  margin-right: -30px;
+}
+
+
+.lock .content .form-actions .btn {
+  margin-top: 1px;
+}
+
+
+/* footer copyright */
+.lock .copyright {
+  text-align: center;
+  margin: 0 auto; 
+  padding: 10px;
+  color: #eee;
+  font-size: 12px;
+}

@@ -1,0 +1,113 @@
+/***
+Forget page
+***/
+
+/* forget page */
+.lforget {
+  background-color: #666 !important;
+}
+
+.forget .logo {
+  margin: 0 auto;   
+  margin-top:10px;
+  padding: 15px;
+  text-align: center;
+}  
+
+
+.forget .content {
+  background: url(../../img/bg-white-lock.png) repeat;
+  width: 360px;
+  margin: 0 auto; 
+  margin-bottom: 0px;
+  padding: 30px;  
+  padding-top: 20px;  
+  padding-bottom: 15px;  
+}
+
+.forget .content h3 {
+  color: #eee;
+}
+.forget .content h4  {
+  color: #eee;
+}
+
+.forget .content p,
+.forget .content label {
+  color: #fff;
+}
+
+.forget .content .forget-form {
+    padding: 0px;
+    margin: 0px;
+}
+
+.forget .content .form-control {
+  background-color: #fff;
+}
+
+
+.forget .content .form-title {
+  font-weight: 300;
+  margin-bottom: 25px;
+}
+
+.forget .content .form-actions {
+  background-color: transparent;
+  clear: both;
+  border: 0px;
+  padding: 0px 30px 25px 30px;
+  margin-left: -30px;
+  margin-right: -30px;
+}
+
+
+
+.forget .content .forget-form .form-actions {
+  border: 0;
+  margin-bottom: 0;
+  padding-bottom: 20px;
+}  
+
+
+
+.forget .content .form-actions .checkbox {
+  margin-top: 8px;
+  display: inline-block;
+}
+
+.forget .content .form-actions .btn {
+  margin-top: 1px;
+}
+
+
+/* footer copyright */
+.forget .copyright {
+  text-align: center;
+  margin: 0 auto; 
+  padding: 10px;
+  color: #eee;
+  font-size: 12px;
+}
+
+@media (max-width: 480px) {
+  /***
+  Login page
+  ***/
+  .forget .logo {
+    margin-top:10px;
+  }
+
+  .forget .content {
+    padding: 30px; 
+    width: 222px;
+  }
+
+  .forget .content h3 {
+    font-size: 22px;
+  }
+
+  .forget .checkbox {
+    font-size: 13px;
+  }
+}

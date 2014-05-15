@@ -1,0 +1,15 @@
+.insert-img:link{
+	width:66px;
+	height:64px;
+	display:block;
+	background:url("../../img/insert-img.png") no-repeat;
+}
+.insert-img:hover{
+	width:66px;
+	height:64px;
+	display:bolck;
+	background:url("../../img/insert-img-hover.png") no-repeat;
+}
+.insert-img img{
+	visibility:hidden;
+}

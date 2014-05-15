@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context.xsd
+						http://www.springframework.org/schema/data/jpa 
+                        http://www.springframework.org/schema/data/jpa/spring-jpaxsd 
+                        http://www.springframework.org/schema/cache 
+                        http://www.springframework.org/schema/cache/spring-cache.xsd                        
+						http://www.springframework.org/schema/mvc
+						http://www.springframework.org/schema/mvc/spring-mvc.xsd
+						http://www.springframework.org/schema/aop 
+						http://www.springframework.org/schema/aop/spring-aop.xsd
+						http://www.springframework.org/schema/tx 
+						http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+
+	<!-- 隐式地向 Spring 容器注册 AutowiredAnnotationBeanPostProcessor、 CommonAnnotationBeanPostProcessor, 
+		PersistenceAnnotationBeanPostProcessor, RequiredAnnotationBeanPostProcessor -->
+	<context:annotation-config />
+	<!-- 自动扫描com.baobaotao.web 包下的@Controller标注的类控制器类 -->
+	<context:component-scan base-package="com.e1858.wuye.controller" />
+	<!-- 扫描com.e1858.wuye.entity.hibernate包下所有标注@Entity的entity(model)组件 -->
+	<context:component-scan base-package="com.e1858.wuye.entity.hibernate" />
+	<!-- 扫描com.e1858.wuye.dao.hibernate包下所有标注@Repository的DAO组件 -->
+	<context:component-scan base-package="com.e1858.wuye.dao.hibernate" />
+	<!-- 扫描com.e1858.wuye.service.hibernate包下所有标注@Service的服务组件 -->
+	<context:component-scan base-package="com.e1858.wuye.service.hibernate" />
+	<!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射 在初始化的时候会自动创建两个对象，org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter, 
+		org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapte -->
+
+
+	<!-- view resolve bean -->
+
+	<bean id="contentNegotiationManager"
+		class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+		<property name="favorPathExtension" value="true" />
+		<property name="ignoreAcceptHeader" value="false" />
+		<property name="favorParameter" value="true" />
+		<property name="parameterName" value="f" />
+		<property name="defaultContentType" value="text/html" />
+		<property name="useJaf" value="false" />
+
+		<property name="mediaTypes">
+			<map>
+				<entry key="html" value="text/html" />
+				<entry key="json" value="application/json" />
+				<entry key="xml" value="application/xml" />
+				<entry key="*" value="*/*" />
+			</map>
+		</property>
+	</bean>
+	<!-- Xstream marshaller unmarshaller -->
+	<bean id="xstreamMarshaller" class="org.springframework.oxm.xstream.XStreamMarshaller">
+		<property name="streamDriver">
+			<!--<bean class="com.thoughtworks.xstream.io.xml.StaxDriver"></bean> -->
+			<bean class="com.thoughtworks.xstream.io.xml.XppDriver"></bean>
+		</property>
+		<property name="autodetectAnnotations" value="true" />
+	</bean>
+
+	<!-- 解决@ResponseBody输出字符串时遇到的乱码问题 -->
+	<bean id="charsetUTF8" class="java.nio.charset.Charset"
+		factory-method="forName">
+		<constructor-arg value="UTF-8" />
+	</bean>
+	<!--<mvc:annotation-driven /> -->
+	<mvc:annotation-driven
+		content-negotiation-manager="contentNegotiationManager">
+		<mvc:message-converters>
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<constructor-arg ref="charsetUTF8" />
+			</bean>
+			<bean
+				class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter">
+				<property name="marshaller" ref="xstreamMarshaller" />
+				<property name="unmarshaller" ref="xstreamMarshaller" />
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+
+	<!-- captcha bean -->
+	<bean id="captchaProducer" class="com.google.code.kaptcha.impl.DefaultKaptcha">
+		<property name="config">
+			<bean class="com.google.code.kaptcha.util.Config">
+				<!--通过构造函数注入属性值 -->
+				<constructor-arg type="java.util.Properties">
+					<props>
+						<!-- 验证码宽度 -->
+						<prop key="kaptcha.image.width">78</prop>
+						<!-- 验证码高度 -->
+						<prop key="kaptcha.image.height">36</prop>
+						<!-- 生成验证码内容范围 -->
+						<prop key="kaptcha.textproducer.char.string">0123456789</prop>
+						<!-- 验证码个数 -->
+						<prop key="kaptcha.textproducer.char.length">4</prop>
+						<!-- 是否有边框 -->
+						<prop key="kaptcha.border">yes</prop>
+						<!-- 边框颜色 -->
+						<prop key="kaptcha.border.color">105,179,90</prop>
+						<!-- 边框厚度 -->
+						<prop key="kaptcha.border.thickness">1</prop>
+						<!-- 验证码字体颜色 -->
+						<prop key="kaptcha.textproducer.font.color">red</prop>
+						<!-- 验证码字体大小 -->
+						<prop key="kaptcha.textproducer.font.size">26</prop>
+						<!-- 验证码所属字体样式 -->
+						<prop key="kaptcha.textproducer.font.names">BKamrnBd</prop>
+						<!-- 干扰线颜色 -->
+						<prop key="kaptcha.noise.color">blue</prop>
+						<!-- 验证码文本字符间距 -->
+						<prop key="kaptcha.textproducer.char.space">3</prop>
+					</props>
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<!-- if no extension matched, use JSP view -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix">
+			<value>/WEB-INF/views/</value>
+		</property>
+		<property name="suffix">
+			<value>.jsp</value>
+		</property>
+	</bean>
+
+	<!-- file upload -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- specify maximum file size in bytes 1024*1024*10byte (10M)-->
+		<!--<property name="maxUploadSize" value="10485760" />-->
+        <property name="defaultEncoding" value="UTF-8" />
+	</bean>
+</beans> 
